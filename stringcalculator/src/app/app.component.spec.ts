@@ -38,30 +38,31 @@ describe('AppComponent', () => {
     expect(component.add('')).toBe(0);
   });
 
-  it('should return sum for the n comma seperated number string', ()=> {
+  it('should return sum for the n comma seperated number string', () => {
     expect(component.add('4,4,5,6,9')).toEqual(28);
-  })
+  });
 
   it('should handle new lines between numbers (instead of commas)', () => {
     expect(component.add('1\n2,3')).toEqual(6);
-  })
+  });
 
   /* Support different delimiters
 to change a delimiter, the beginning of the string will contain a separate line that looks like this: “//[delimiter]\n[numbers…]” for example “//;\n1;2” should return three where the default delimiter is ‘;’ .
 the first line is optional. all existing scenarios should still be supported */
 
+  it('should handle different delimeters  and begining with "//[delimiter]\n[numbers]"', () => {
+    expect(component.add('//;\n1;2')).toEqual(3);
+  });
 
-it('should handle different delimeters  and begining with "//[delimiter]\n[numbers]"', () => {
-  expect(component.add('//;\n1;2')).toEqual(3);
-})
+  it('Calling Add with a negative number will throw an exception “negatives not allowed” ', () => {
+    expect(component.add('2,3,-5,7')).toBe('negatives not allowed: -5');
+    expect(component.add('2,3,-5,7,-9')).toBe('negatives not allowed: -5,-9');
+  });
 
-it('Calling Add with a negative number will throw an exception “negatives not allowed” ', () => {
-  expect(component.add('2,3,-5,7')).toBe('negatives not allowed: -5')
-  expect(component.add('2,3,-5,7,-9')).toBe('negatives not allowed: -5,-9')
-})
-
-it('Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2', ()=> {
-  expect(component.add('4,4,5,6,4569')).toEqual(19);
-})
-
+  it('Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2', () => {
+    expect(component.add('4,4,5,6,4569')).toEqual(19);
+  });
+  it('Delimiters can be of any length with the following format: “//[delimiter]\n”', () => {
+    expect(component.add('//[***]\n1***2***3')).toEqual(6);
+  });
 });

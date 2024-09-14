@@ -20,7 +20,11 @@ export class AppComponent {
     }
     let delimiter = ','
     let numberString = input;
-    if(input.startsWith('//')){
+    if(input.startsWith('//[')){
+      delimiter = input.match(/\/\/\[(.*?)\]\n/)[1];
+      numberString = input.slice(input.indexOf('\n'));
+      console.log(delimiter, numberString)
+    }else if(input.startsWith('//')){
       delimiter = input.match(/\/\/(.+)\n/)[1];
       numberString = input.slice(2)
     }
