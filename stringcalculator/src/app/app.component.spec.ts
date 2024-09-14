@@ -27,7 +27,20 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, stringcalculator');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, stringcalculator'
+    );
   });
 
+  //simplest test case of an empty string
+
+  it('should return 0 with empty string', () => {
+    expect(component.add('').toBe(0));
+  });
+
+  it('should return sum for the n comma seperated number string', ()=> {
+    expect(component.add('4,4,5,6,9').toEqual(28));
+  })
+
+  
 });

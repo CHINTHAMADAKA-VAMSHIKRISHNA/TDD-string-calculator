@@ -10,4 +10,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'stringcalculator';
+
+
+  // Create a simple String calculator with a method signature:
+
+  add(input) {
+    
+  }
 }
