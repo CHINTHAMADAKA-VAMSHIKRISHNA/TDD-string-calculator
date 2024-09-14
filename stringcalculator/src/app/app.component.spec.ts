@@ -55,4 +55,9 @@ it('should handle different delimeters  and begining with "//[delimiter]\n[numbe
   expect(component.add('//;\n1;2')).toEqual(3);
 })
 
+it('Calling Add with a negative number will throw an exception “negatives not allowed” ', () => {
+  expect(component.add('2,3,-5,7')).toBe('negatives not allowed: -5')
+  expect(component.add('2,3,-5,7,-9')).toBe('negatives not allowed: -5,-9')
+})
+
 });

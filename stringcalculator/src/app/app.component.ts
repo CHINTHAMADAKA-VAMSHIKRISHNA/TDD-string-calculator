@@ -27,9 +27,21 @@ export class AppComponent {
     let regex = new RegExp(`[,\n${delimiter}]`)
     let numbers = numberString.split(regex);    
     let sum = 0;
-    numbers.forEach(element => {
-      sum += Number(element);
-    });
+    let negativeNumbers = [];
+    try {
+      numbers.forEach(element => {
+        if(Number(element) < 0) {
+          negativeNumbers.push(element);
+        }
+        sum += Number(element);
+      });
+      if(negativeNumbers?.length) {
+        throw Error('negatives not allowed: '+ negativeNumbers.toString());
+      }
+    } catch (error) {
+      console.error(error)
+      return error.message
+    }
     return sum ;
   }
 }
