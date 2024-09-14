@@ -33,7 +33,7 @@ export class AppComponent {
         if(Number(element) < 0) {
           negativeNumbers.push(element);
         }
-        sum += Number(element);
+        sum += Number(element) > 1000 ? 0 : Number(element);
       });
       if(negativeNumbers?.length) {
         throw Error('negatives not allowed: '+ negativeNumbers.toString());

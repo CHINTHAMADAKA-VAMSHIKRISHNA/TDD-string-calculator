@@ -60,4 +60,8 @@ it('Calling Add with a negative number will throw an exception “negatives not 
   expect(component.add('2,3,-5,7,-9')).toBe('negatives not allowed: -5,-9')
 })
 
+it('Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2', ()=> {
+  expect(component.add('4,4,5,6,4569')).toEqual(19);
+})
+
 });
