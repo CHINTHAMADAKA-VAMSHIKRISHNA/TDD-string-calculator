@@ -18,7 +18,14 @@ export class AppComponent {
     if(input === ''){
       return 0;
     }
-    let numbers = input.split(/[,\n]/);
+    let delimiter = ','
+    let numberString = input;
+    if(input.startsWith('//')){
+      delimiter = input.match(/\/\/(.+)\n/)[1];
+      numberString = input.slice(2)
+    }
+    let regex = new RegExp(`[,\n${delimiter}]`)
+    let numbers = numberString.split(regex);    
     let sum = 0;
     numbers.forEach(element => {
       sum += Number(element);
