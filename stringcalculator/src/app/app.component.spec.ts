@@ -65,4 +65,12 @@ the first line is optional. all existing scenarios should still be supported */
   it('Delimiters can be of any length with the following format: “//[delimiter]\n”', () => {
     expect(component.add('//[***]\n1***2***3')).toEqual(6);
   });
+
+  it('allow multiple delimiters like this: “//[delim1][delim2]\n”', () => {
+    expect(component.add('//[*][%]\n1*2%3')).toEqual(6);
+  });
+  
+  it('handle multiple delimiters with length longer than one char', () => {
+    expect(component.add('//[*][%][$$]\n1*2%3$$4')).toEqual(10);
+  });
 });

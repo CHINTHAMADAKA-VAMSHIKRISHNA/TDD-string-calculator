@@ -18,16 +18,17 @@ export class AppComponent {
     if(input === ''){
       return 0;
     }
-    let delimiter = ','
+    let delimiter = [',']
     let numberString = input;
     if(input.startsWith('//[')){
-      delimiter = input.match(/\/\/\[(.*?)\]\n/)[1];
+      delimiter = input.match(/\[(.*?)\]/g);
+      delimiter = delimiter.map(d => d.replace(/[-\/\\^$*+?.(@!)|[\]{}]/g, '\\$&'));
       numberString = input.slice(input.indexOf('\n'));
-      console.log(delimiter, numberString)
-    }else if(input.startsWith('//')){
-      delimiter = input.match(/\/\/(.+)\n/)[1];
+    } else if(input.startsWith('//')){
+      delimiter = input.match(/\/\/(.+)\n/);
       numberString = input.slice(2)
     }
+    delimiter = delimiter.map(d => d.slice(1,-1).replace(/[-\/\\^$*+?.(@!)|[\]{}]/g, '\\$&'));
     let regex = new RegExp(`[,\n${delimiter}]`)
     let numbers = numberString.split(regex);    
     let sum = 0;
