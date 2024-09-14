@@ -35,12 +35,12 @@ describe('AppComponent', () => {
   //simplest test case of an empty string
 
   it('should return 0 with empty string', () => {
-    expect(component.add('').toBe(0));
+    expect(component.add('')).toBe(0);
   });
 
   it('should return sum for the n comma seperated number string', ()=> {
-    expect(component.add('4,4,5,6,9').toEqual(28));
+    expect(component.add('4,4,5,6,9')).toEqual(28);
   })
 
-  
+
 });
