@@ -42,5 +42,8 @@ describe('AppComponent', () => {
     expect(component.add('4,4,5,6,9')).toEqual(28);
   })
 
+  it('should handle new lines between numbers (instead of commas)', () => {
+    expect(component.add('1\n2,3')).toEqual(6);
+  })
 
 });

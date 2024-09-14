@@ -18,7 +18,7 @@ export class AppComponent {
     if(input === ''){
       return 0;
     }
-    let numbers = input.split(',');
+    let numbers = input.split(/[,\n]/);
     let sum = 0;
     numbers.forEach(element => {
       sum += Number(element);
